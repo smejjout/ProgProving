@@ -6,21 +6,22 @@
 \usepackage{amsmath}
 \usepackage{progproving}
 \usepackage{listings}
+\usepackage{minted}
 
 \geometry{top=25mm,bottom=25mm,inner=25mm,outer=20mm}
 \allowdisplaybreaks
 
 \begin{document}
 \title{ProgProving package : Example}
-
-\author{BERG Lucas}
+\author{MEJJOUTE Sofian}
 
 \maketitle
 
 \section{Introduction}
-    This document is an example for the ProgProving package. We will prove the following function :
+    This document is an example for the ProgProving package.
+    We will prove the following function :
 
-    \begin{lstlisting}[language=C]
+    \begin{minted}{C}
 int sum(int array[], int length) {
     int total = 0;
     int i = 0;
@@ -30,26 +31,25 @@ int sum(int array[], int length) {
     }
     return total;
 }
-    \end{lstlisting}
-
+    \end{minted}
 \section{Specifications}
     First, let's write the specifications of the function.
-    
+
     \subsection{Header}
-        \begin{lstlisting}[language=C]
+        \begin{minted}{C}
 int sum(int array[], int length)
-        \end{lstlisting}
-    
+        \end{minted}
+
     \subsection{Environment}
         /
-    
+
     \subsection{Preconditions}
         \begin{flalign*}
             & \pre = \state{
                 0 \leq length = \text{size of array[]}
             } &
         \end{flalign*}
-    
+
     \subsection{Postconditions}
         \begin{flalign*}
             & \post = \state{
@@ -68,7 +68,7 @@ int sum(int array[], int length)
                     & i := 0;
                 \end{aligned}
             & \\
-            & \iter \equiv 
+            & \iter \equiv
                 \begin{aligned}
                     & total := total + array[i]; \\
                     & i := i + 1;
@@ -82,7 +82,7 @@ int sum(int array[], int length)
                 & i = 0
             } &
         \end{flalign*}
-    
+
     \subsection{Find the loop invariant}
         First, we need to find the loop invariant. In most cases, the invariant will describe the state of the loop using i-1. In our case, the invariant is :
         \begin{flalign*}
@@ -93,7 +93,7 @@ int sum(int array[], int length)
                 & array = array_0
             } &
         \end{flalign*}
-    
+
     \subsection{Proof that $\inv$ is an invariant}
         Now, we have to prove $\{ \inv \wedge \cond \} \iter \{ \inv \}$. If we can prove that, this means that the invariant is correct.
         First, let's define $\inv \wedge \cond$
@@ -281,7 +281,7 @@ int sum(int array[], int length)
         \end{flalign*}
 
         All right, the invariant is correct so we can move on to the next step.
-    
+
     \subsection{Proof that $\inv$ is strong enough}
         The next step is to prove that the invariant is true before the loop so we need to prove $\lpre \Rightarrow \inv$.
 
@@ -381,4 +381,6 @@ int sum(int array[], int length)
         \end{flalign*}
 
         Everything is proved so the program is correct.
+
+    \input{proof.tex}
 \end{document}
